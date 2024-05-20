@@ -14,7 +14,6 @@ spec:
       containers:
         - name: argo-test-app1
           image: kerhalish/argo-test-app1:{{ .Values.env.APP_VERSION }}
-          command: ["sh", "-c", "sleep infinity"]
           ports:
             - name: http
               containerPort: 5000
