@@ -14,24 +14,8 @@ spec:
       containers:
         - name: argo-test-app1
           image: kerhalish/argo-test-app1:{{ .Values.env.APP_VERSION }}
+          command: ["sh", "-c", "sleep infinity"]
           ports:
             - name: http
               containerPort: 5000
               protocol: TCP
-          readinessProbe:
-            httpGet:
-                path: /health
-                port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            successThreshold: 1
-            failureThreshold: 3
-          livenessProbe:
-            httpGet:
-                path: /health
-                port: 5000
-            initialDelaySeconds: 10
-            periodSeconds: 10
-            timeoutSeconds: 5
-            successThreshold: 1
-            failureThreshold: 3
