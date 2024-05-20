@@ -1,7 +1,19 @@
-FROM python:3.6.15-slim-buster
-RUN pip3 install flask requests
+FROM python:3.8-slim
+
+# Telepítsd a függőségeket a requirements.txt fájlból
+COPY requirements.txt /tmp/
+RUN pip install -r /tmp/requirements.txt
+
+# Hozz létre egy felhasználót a konténerhez
 RUN useradd pythonuser -ms /bin/bash
+
+# Beállítjuk a munkakönyvtárat és a felhasználót
 WORKDIR /home/pythonuser/app
 USER pythonuser
-COPY app.py app.py
-CMD python -u app.py
+
+# Másoljuk át az alkalmazás fájljait
+COPY . .
+
+# Indítsuk el az alkalmazást
+CMD ["python", "app.py"]
+
