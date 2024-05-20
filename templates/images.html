@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Uploaded Images</title>
+    <style>
+        #images { height: 400px; overflow-y: scroll; }
+        .button {
+            margin: 20px;
+            padding: 10px;
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ folder|capitalize }} Images</h1>
+    <div id="images">
+        <ul>
+            {% for image in images %}
+                <li><a href="{{ url_for('display_image', filename=image) }}">{{ image }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="/"><button class="button">Back to Home</button></a>
+</body>
+</html>

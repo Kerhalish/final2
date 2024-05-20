@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detected Images</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #0056b3;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        img {
+            max-width: 600px; 
+            margin-right: 15px;
+            border-radius: 4px;
+        }
+        p {
+            margin: 0;
+            font-size: 16px;
+            line-height: 1.4;
+        }
+        button {
+            padding: 8px 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Detected Images</h1>
+    <div>
+        <ul>
+            {% for image in images %}
+                <li>
+                    <img src="{{ url_for('static', filename='detected/results/' + image) }}" alt="Detected Image">
+                    <p>{{ descriptions[image] }}</p>  <!-- Leírás megjelenítése -->
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="/"><button>Back to Home</button></a>
+</body>
+</html>
