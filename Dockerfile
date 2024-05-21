@@ -12,13 +12,12 @@ RUN useradd pythonuser -ms /bin/bash
 
 # Beállítjuk a munkakönyvtárat és a felhasználót
 WORKDIR /home/pythonuser/app
-USER pythonuser
 
 # Másoljuk át az alkalmazás fájljait
 COPY . .
 
-# Teljes hozzáférést biztosítunk a könyvtárhoz
-RUN chmod -R 777 /home/pythonuser/app
+# Teljes hozzáférést biztosítunk a könyvtárhoz, kivéve a .git könyvtárat
+RUN find /home/pythonuser/app ! -path "/home/pythonuser/app/.git*" -exec chmod 777 {} +
 
 # Expose port 5000
 EXPOSE 5000
